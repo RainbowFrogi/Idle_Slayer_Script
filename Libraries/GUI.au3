@@ -36,7 +36,7 @@ Global $iJumpSliderValue = 150, _
 		$iTimerAutoAscend = TimerInit(), _
 		$iTimerFocusGame = TimerInit(), _
 		$iLastCheckTimeLoop = TimerInit()
-Global $aSettingGlobalVariables[13] = ["iAutoAscendTimer", "bAutoAscendState", "bAutoBuyUpgradeState", "bCraftSoulBonusState", "bSkipBonusStageState", "bCraftRagePillState", "bCirclePortalsState", "iJumpSliderValue", "bNoLockpickingState", "iCirclePortalsCount", "bDimensionalState", "bBiDimensionalState", "bDisableRageState"]
+Global $aSettingGlobalVariables[14] = ["iAutoAscendTimer", "iAutoBuyUpgradeTimer", "bAutoAscendState", "bAutoBuyUpgradeState", "bCraftSoulBonusState", "bSkipBonusStageState", "bCraftRagePillState", "bCirclePortalsState", "iJumpSliderValue", "bNoLockpickingState", "iCirclePortalsCount", "bDimensionalState", "bBiDimensionalState", "bDisableRageState"]
 Global $aSettingCheckBoxes[10] = ["bAutoAscendState", "bAutoBuyUpgradeState", "bCraftSoulBonusState", "bSkipBonusStageState", "bCraftRagePillState", "bCirclePortalsState", "bNoLockpickingState", "bBiDimensionalState", "bDimensionalState", "bDisableRageState"]
 
 ; #FUNCTION# ====================================================================================================================
@@ -143,6 +143,8 @@ Func CreateGeneralSheet($hGUIForm, $iTabControl)
 	Local $iAutoUpgrade = GUICtrlCreatePicCustom('Resources\AutoBuyUpgrades.jpg', 207, 45, 165, 16, $SS_BITMAP + $SS_NOTIFY)
 	_Resource_SetToCtrlID($iAutoUpgrade, 'AUTOUPGRADES')
 	GUICtrlSetTip(-1, "Buys upgrades except Vertical Magnet and Electric Worms. It will start after 10 sec you actived it and after that every 10 min")
+	Global $iAutoBuyUpgradeNumber = GUICtrlCreateInput($iAutoBuyUpgradeTimer, 382, 43, 50, 20, $ES_NUMBER)
+	GUICtrlSetOnEvent(-1, "EventAutoBuyUpgradeTimer")
 
 	; Create CirclePortals Checkbox
 	Global $iCheckBoxbCirclePortalsState = GUICtrlCreatePicCustom('Resources\CheckboxUnchecked.jpg', 181, 83, 16, 16, $SS_BITMAP + $SS_NOTIFY)
@@ -310,6 +312,11 @@ Func EventAutoAscendTimer()
 	$iAutoAscendTimer = GUICtrlRead($iAutoAscendNumber)
 	SaveSettings()
 EndFunc   ;==>EventAutoAscendTimer
+
+Func EventAutoBuyUpgradeTimer()
+	$iAutoBuyUpgradeTimer = GUICtrlRead($iAutoBuyUpgradeNumber)
+	SaveSettings()
+EndFunc   ;==>EventAutoBuyUpgradeTimer
 
 Func EventUpArrow()
 	If ($iJumpSliderValue + 10) <= 300 Then
