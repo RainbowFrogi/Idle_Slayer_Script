@@ -31,7 +31,7 @@ Global $sVersion = "3.3.4"
 Global $iJumpSliderValue = 150, _
 		$iCirclePortalsCount = 7, _
 		$iAutoAscendTimer = 10, _
-		$iCooldownAutoUpgrades = 600000, _
+		$iAutoBuyUpgradeTimer = 10, _
 		$iTimerAutoBuy = TimerInit(), _
 		$iTimerAutoAscend = TimerInit(), _
 		$iTimerFocusGame = TimerInit(), _
@@ -159,10 +159,10 @@ Func CreateGeneralSheet($hGUIForm, $iTabControl)
 	GUICtrlSetTip(-1, "When Checked will not rage at Megahordes without soulbonus")
 
 	; Create JumpRate Slider
-	Local $iJumpSlider = GUICtrlCreatePicCustom('Resources\JumpRate.jpg', 400, 45, 98, 16, $SS_BITMAP + $SS_NOTIFY)
+	Local $iJumpSlider = GUICtrlCreatePicCustom('Resources\JumpRate.jpg', 450, 45, 98, 16, $SS_BITMAP + $SS_NOTIFY)
 	_Resource_SetToCtrlID($iJumpSlider, 'JUMPRATE')
 
-	Global $iJumpNumber = GUICtrlCreatePicCustom('Resources\150.jpg', 505, 42, 42, 22, $SS_BITMAP + $SS_NOTIFY)
+	Global $iJumpNumber = GUICtrlCreatePicCustom('Resources\150.jpg', 555, 42, 42, 22, $SS_BITMAP + $SS_NOTIFY)
 	_Resource_SetToCtrlID($iJumpNumber, 'NUM150')
 	Local $iJumpUp = GUICtrlCreatePicCustom('Resources\UpArrow.jpg', 547, 42, 17, 11, $SS_BITMAP + $SS_NOTIFY)
 	_Resource_SetToCtrlID($iJumpUp, 'UPARROW')
@@ -172,12 +172,12 @@ Func CreateGeneralSheet($hGUIForm, $iTabControl)
 	GUICtrlSetOnEvent(-1, "EventDownArrow")
 
 	; Create Auto Ascend
-	Global $iCheckBoxbAutoAscendState = GUICtrlCreatePicCustom('Resources\CheckboxUnchecked.jpg', 380, 83, 16, 16, $SS_BITMAP + $SS_NOTIFY)
+	Global $iCheckBoxbAutoAscendState = GUICtrlCreatePicCustom('Resources\CheckboxUnchecked.jpg', 430, 83, 16, 16, $SS_BITMAP + $SS_NOTIFY)
 	GUICtrlSetOnEvent(-1, "EventGlobalCheckBox")
-	Local $iAutoAscend = GUICtrlCreatePicCustom('Resources\AutoAscend.jpg', 400, 83, 98, 16, $SS_BITMAP + $SS_NOTIFY)
+	Local $iAutoAscend = GUICtrlCreatePicCustom('Resources\AutoAscend.jpg', 450, 83, 98, 16, $SS_BITMAP + $SS_NOTIFY)
 	_Resource_SetToCtrlID($iAutoAscend, 'AUTOASCEND')
 	GUICtrlSetTip(-1, "Auto Ascend after a certain amount of time. The number is in minutes")
-	Global $iAutoAscendNumber = GUICtrlCreateInput($iAutoAscendTimer, 510, 83, 50, 20, $ES_NUMBER)
+	Global $iAutoAscendNumber = GUICtrlCreateInput($iAutoAscendTimer, 560, 83, 50, 20, $ES_NUMBER)
 	GUICtrlSetOnEvent(-1, "EventAutoAscendTimer")
 	Return $iTabGeneral
 EndFunc   ;==>CreateGeneralSheet

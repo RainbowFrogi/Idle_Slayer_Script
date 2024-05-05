@@ -242,8 +242,7 @@ Func Main()
 
 			; Auto buy upgrades
 			If $bAutoBuyUpgradeState Then
-				If ($iCooldownAutoUpgrades < TimerDiff($iTimerAutoBuy)) Then
-					$iCooldownAutoUpgrades = 600000
+				If (($iAutoBuyUpgradeTimer * 60000) < TimerDiff($iTimerAutoBuy)) Then
 					$iTimerAutoBuy = TimerInit()
 					WinActivate("Idle Slayer")
 					If WinGetTitle("[ACTIVE]") == "Idle Slayer" Then
