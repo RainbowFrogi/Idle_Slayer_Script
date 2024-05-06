@@ -32,6 +32,7 @@ Global $iJumpSliderValue = 150, _
 		$iCirclePortalsCount = 7, _
 		$iAutoAscendTimer = 10, _
 		$iAutoBuyUpgradeTimer = 10, _
+		$iCooldownAutoUpgrades = 10000, _
 		$iTimerAutoBuy = TimerInit(), _
 		$iTimerAutoAscend = TimerInit(), _
 		$iTimerFocusGame = TimerInit(), _
@@ -346,7 +347,7 @@ EndFunc   ;==>EventDownArrow
 
 Func EventGlobalCheckBox()
 	If $iCheckBoxbAutoBuyUpgradeState == @GUI_CtrlId Then
-		$iCooldownAutoUpgrades = 10000
+		$iCooldownAutoUpgrades = TimerInit()
 		$iTimerAutoBuy = TimerInit()
 	EndIf
 	SetChechBox(@GUI_CtrlId)
