@@ -249,6 +249,7 @@ Func Main()
 						BuyEquipment()
 						SyncProcess(True)
 					EndIf
+					$iAutoBuyUpgradeTimer = GUICtrlRead($iAutoBuyUpgradeNumber)
 					$iTimerAutoBuy = TimerInit()
 				EndIf
 			EndIf
